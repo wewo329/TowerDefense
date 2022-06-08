@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 74ee92fb0fb4a6a4c83f28258df68c80, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8439255ee9e5a214cb730d30095ef178, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e926c3dcb8b733419921fcc17609d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 10
+  gold: 50
 --- !u!114 &691174005249427624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f226f7d993135b4db02a54e8616b7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
   moveDirection: {x: 0, y: 0, z: 0}
 --- !u!58 &8540751144764944829
 CircleCollider2D:
@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ac1f65b3ef14943ab3f7adcc4fa1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 5
+  maxHP: 10

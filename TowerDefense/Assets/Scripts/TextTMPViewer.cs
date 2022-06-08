@@ -1,21 +1,30 @@
 using UnityEngine;
 using TMPro;
 
-
-public class TextTMPViewer : MonoBehaviour
+public class TextTMPViewer: MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI textPlayerHP;  //Text - TextMeshPro UI [플레이어의 체력]
+    private TextMeshProUGUI textPlayerHP;
     [SerializeField]
-    private TextMeshProUGUI textPlayerGold;  //Text - TextMeshPro UI [플레이어의 골드]
+    private TextMeshProUGUI textPlayerGold;
     [SerializeField]
-    private PlayerHP playerHP;             //플레이어의 체력 정보
+    public TextMeshProUGUI textWave;
     [SerializeField]
-    private PlayerGold playerGold;             //플레이어의 골드 정보
+    private TextMeshProUGUI textEnemyCount;
+    [SerializeField]
+    public PlayerHP PlayerHP;
+    [SerializeField]
+    public PlayerGold PlayerGold;
+    [SerializeField]
+    private WaveSystem waveSystem;
+    [SerializeField]
+    private EnemySpawner enemySpawner;
 
     private void Update()
     {
-        textPlayerHP.text = playerHP.CurrentHP + "/" + playerHP.MaxHP;
-        textPlayerGold.text = playerGold.CurrentGold.ToString();
+        textPlayerHP.text = PlayerHP.CurrentHP + "/" + PlayerHP.MaxHP;
+        textPlayerGold.text = PlayerGold.CurrentGold.ToString();
+        textWave.text = waveSystem.CurrentWave + "/" + waveSystem.MaxWave;
+        textEnemyCount.text = enemySpawner.CurrentEnemyCount + "/" + enemySpawner.MaxEnemyCount;
     }
 }
