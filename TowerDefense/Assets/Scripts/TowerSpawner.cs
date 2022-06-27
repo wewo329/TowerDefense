@@ -14,11 +14,33 @@ public class TowerSpawner: MonoBehaviour
     private PlayerGold playerGold;// 타워 건설 시 골드 감소를 위해..
     [SerializeField]
     private SystemTextViewer systemTextViewer;    //돈 부족, 건설 불가와 같은 시스템 메세지 출력
+    private bool isOnTowerButton = false;        //타워 건설 버튼 눌렀는지 체크
+
+    public void ReadyToSpawnTower()
+    {
+        //타워 건설 가능 여부 확인
+        //타워를 건설할 만큼 돈이 없으면 타워 건설 X
+        if(towerTemplate.weapon[0].cost > playerGold.CurrentGold)
+        {
+            //골드가 부족해서 타워 건설이 불가능하다고 출력
+            systemTextViewer.PrintText(SystemType.Money);
+            return;
+        }
+
+        //타워 건설 버튼을 눌렀다고 설정
+        isOnTowerButton = true;
+    }
 
     public void SpawnTower(Transform tileTransform)
     {
+
+        //타워 건설 버튼을 눌렀을 때만 타워 건설 가능
+        if (isOnTowerButton == false)
+        {
+            return;
+        }
         
-        //타워 건설 가능 여부 확인
+      /*  //타워 건설 가능 여부 확인
         // 1. 타워를 건설할 만큼 돈이 없으면 타워 건설 X
         //if(towerBuildGold > playerGold.CurrentGold)
         if(towerTemplate.weapon[0].cost > playerGold.CurrentGold)
@@ -26,16 +48,19 @@ public class TowerSpawner: MonoBehaviour
             //골드가 부족해서 타워 건설이 불가능하다고 출력
             systemTextViewer.PrintText(SystemType.Money);
             return;
-        }
+        }*/
         Tile tile = tileTransform.GetComponent<Tile>();
 
-        //1. 현재 타일의 위치에 이미 타워가 건설되어 있으면 타워 건설 X
+        //2. 현재 타일의 위치에 이미 타워가 건설되어 있으면 타워 건설 X
         if (tile.IsBuildTower == true)
         {
             //현재 위치에 타워 건설에 불가능하다고 출력
             systemTextViewer.PrintText(SystemType.Build);
             return;
         }
+
+        //다시 타워 건설 버튼을 눌러서 타워를 건설하도록 변수 설정
+        isOnTowerButton = false;
         //타워가 건설되어 있음으로 설정
         tile.IsBuildTower = true;
         //타워 건설에 필요한 골드만큼 감소
@@ -48,7 +73,7 @@ public class TowerSpawner: MonoBehaviour
         //선택한 타일의 위피에 타워 건설
         //Instantiate(towerPrefab, tileTransform.position, Quaternion.identity);
         //타워무기에 enemySpawner 정보 전달
-        clone.GetComponent<TowerWeapon>().Setup(enemySpawner,playerGold);
+        clone.GetComponent<TowerWeapon>().Setup(enemySpawner,playerGold,tile);
     }
 
 }

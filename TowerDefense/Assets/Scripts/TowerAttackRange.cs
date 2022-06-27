@@ -5,10 +5,10 @@ using UnityEngine;
 public class TowerAttackRange : MonoBehaviour
 {
     // Start is called before the first frame update
-    private void Awake()
+    /*private void Awake()
     {
         OffAttackRange();
-    }
+    }*/
 
     public void OnAttackRange(Vector3 position, float range)
     {
